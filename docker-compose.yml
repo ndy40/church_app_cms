@@ -1,0 +1,69 @@
+version: "3.8"
+
+services:
+  web:
+    restart: always
+    build:
+      context: .
+    ports:
+      - "8000"
+    volumes:
+      - ./church_cms:/opt/app/church_cms
+      - static_volume:/opt/app/static
+    environment:
+      DEBUG: "true"
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_PASSWORD: superadminpassword
+      DJANGO_SUPERUSER_EMAIL: admin@mail.com
+      PG_DATABASE: ${PG_DATABASE:-church_cms}
+      PG_USER: ${PG_USER:-church_admin}
+      PG_PASSWORD: ${PG_PASSWORD:-church_super_admin}
+      PG_HOST: db
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - http_network
+      - db_network
+
+  nginx:
+    restart: always
+    image: nginx:1.21-alpine
+    volumes:
+      - ./infrastructure/nginx/app.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_volume:/opt/app/static
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - http_network
+
+  db:
+    image: postgres:14.2-alpine
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    volumes:
+      -  db_volume:/var/lib/postgresql/data
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${PG_DATABASE:-church_cms}
+      POSTGRES_USER: ${PG_USER:-church_admin}
+      POSTGRES_PASSWORD: ${PG_PASSWORD:-church_super_admin}
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready -U ${PG_USER:-church_admin} -d ${PG_DATABASE:-church_cms}" ]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db_network
+
+networks:
+  http_network:
+  db_network:
+
+volumes:
+  db_volume:
+  static_volume:
