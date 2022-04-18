@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-f6hxigl2@0t=3!cadxt1t6)7g@$rnlm)*(s)7b_)a#mcm#5nw0'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-f6hxigl2@0t=3!cadxt1t6)7g@$rnlm)*(s)7b_)a#mcm#5nw0')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -77,10 +77,10 @@ WSGI_APPLICATION = 'church_cms.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['PG_DATABASE'],
-        'USER': os.environ['PG_USER'],
-        'PASSWORD': os.environ['PG_PASSWORD'],
-        'HOST': os.environ['PG_HOST'],
+        'NAME': os.environ.get('PG_DATABASE'),
+        'USER': os.environ.get('PG_USER'),
+        'PASSWORD': os.environ.get('PG_PASSWORD'),
+        'HOST': os.environ.get('PG_HOST'),
         'PORT': '5432',
     }
 }
