@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    'graphene_django',
+    'accounts',
+    'graphql_api',
 ]
 
 MIDDLEWARE = [
@@ -131,3 +133,8 @@ STATIC_ROOT = '/opt/app/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'accounts.User'
+
+
+GRAPHENE = {
+    'SCHEMA': 'graphql_api.schema.schema'
+}
