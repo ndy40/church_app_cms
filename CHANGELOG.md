@@ -1,3 +1,9 @@
+## v0.3.1 (2022-04-30)
+
+### Fix
+
+- **graphql_api**: defaulting routing to graphql_api
+
 ## v0.3.0 (2022-04-30)
 
 ### Feat
