@@ -25,6 +25,7 @@ services:
     networks:
       - http_network
       - db_network
+      - mailnetwork
 
   nginx:
     restart: always
@@ -60,9 +61,24 @@ services:
     networks:
       - db_network
 
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
+    environment:
+      MH_AUTH_FILE: "/opt/auth.txt"
+    volumes:
+      - ./auth.txt:/opt/auth.txt
+    ports:
+      - 1025 # smtp server
+      - 8025:8025 # web ui
+    networks:
+      - mailnetwork
+
+
 networks:
   http_network:
   db_network:
+  mailnetwork:
 
 volumes:
   db_volume:
