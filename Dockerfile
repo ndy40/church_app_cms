@@ -20,5 +20,6 @@ RUN python -m venv venv; \
 
 WORKDIR /opt/app/church_cms
 
+
 EXPOSE 8000
 CMD ["/opt/app/start_server.sh"]
