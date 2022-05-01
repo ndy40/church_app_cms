@@ -1,0 +1,38 @@
+name: Build and Publish Docker Images
+
+on:
+  push:
+    tags:
+      - 'v*'
+jobs:
+  build_publish:
+    runs-on: ubuntu-latest
+    name: "Checkout, Build and Publish"
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          fetch-depth: 0
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            {{ env.GITHUB_REPOSITORY }}
+          tags: |
+            type=semver,pattern={{version}}
+          github-token: ${{ secrets.GHCR_TOKEN }}
+      - name: Github CR Login
+        with:
+          registry: ghcr.io
+          uses: docker/login-action@v1
+          username: ${{ github.actor }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
