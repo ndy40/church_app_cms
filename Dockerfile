@@ -1,8 +1,9 @@
-FROM python:3.10.0 AS basestage
-RUN apt-get update -y; \
-    apt-get upgrade -y; \
-    apt-get install -y gcc build-essential postgresql-client libpq-dev git\
-    --no-install-recommends && rm -rf /var/lib/apt/lists/*
+FROM python:3.10.4-alpine3.15 AS basestage
+RUN apk add --update-cache \
+    gcc \
+    postgresql-client \
+    libpq-dev \
+    git
 RUN python -m pip install --upgrade pip
 
 
