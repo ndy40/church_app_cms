@@ -20,7 +20,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            ndy40/church_cms
+            ghcr.io/ndy40/church_cms
           tags: |
             type=semver,pattern={{version}}
           github-token: ${{ secrets.GHCR_TOKEN }}
@@ -29,7 +29,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            ndy40/church_cms-nginx
+            ghcr.io/ndy40/church_cms-nginx
           tags: |
             type=semver,pattern={{version}}
           github-token: ${{ secrets.GHCR_TOKEN }}
