@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: tests
-        uses: ${{env.GITHUB_REPOSITORY}}/.github/workflows/main@${{ env.GITHUB_REF }}
+        uses: .github/workflows/main@${{ env.GITHUB_REF }}
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.2"
