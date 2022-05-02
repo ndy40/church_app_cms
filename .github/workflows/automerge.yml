@@ -18,11 +18,13 @@ on:
       - completed
   status: {}
 jobs:
+  tests:
+    uses: ./.github/workflows/main.yml
   automerge:
     runs-on: ubuntu-latest
+    needs:
+      - tests
     steps:
-      - name: tests
-        uses: ./.github/workflows/main.yml
       - id: automerge
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.2"
