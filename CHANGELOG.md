@@ -1,3 +1,9 @@
+## v0.4.0 (2022-05-02)
+
+### Feat
+
+- **workflow**: updating github workflow - nginx, web
+
 ## v0.3.1 (2022-04-30)
 
 ### Fix
