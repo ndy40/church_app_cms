@@ -1,3 +1,9 @@
+## v0.5.1 (2022-05-02)
+
+### Fix
+
+- **build**: changed push username
+
 ## v0.5.0 (2022-05-02)
 
 ### Feat
