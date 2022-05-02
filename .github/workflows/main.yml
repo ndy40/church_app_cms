@@ -1,8 +1,9 @@
 name: Continuous Integration - Tests
 
 on:
+  workflow_call:
   pull_request:
-    branches: [main, develop]
+    branches: [main]
 
   workflow_dispatch:
 
