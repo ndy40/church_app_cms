@@ -1,3 +1,10 @@
+## v0.5.0 (2022-05-02)
+
+### Feat
+
+- **workflow**: updated github workflow order
+- **workflow**: updated github workflow order
+
 ## v0.4.3 (2022-05-02)
 
 ### Fix
