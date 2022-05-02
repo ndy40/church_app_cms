@@ -15,5 +15,6 @@ class GraphQlApiTestCase(TestCase):
               hello
             }
         """
-        resp = self.factory.get('/graphql/', data={'query': payload},)
+        resp = self.factory.post('/', data={'query': payload},)
+        print(resp)
         assert resp.status_code == 200
