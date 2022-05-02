@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  become: yes
+  vars_files:
+    - vars/docker.yml
+  roles:
+    - role: roles/geerlingguy.docker
