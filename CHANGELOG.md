@@ -1,3 +1,9 @@
+## v0.4.1 (2022-05-02)
+
+### Fix
+
+- **workflow**: missing uses in action
+
 ## v0.4.0 (2022-05-02)
 
 ### Feat
