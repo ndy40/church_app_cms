@@ -1,3 +1,9 @@
+## v0.5.2 (2022-05-02)
+
+### Fix
+
+- **build**: github image prefix
+
 ## v0.5.1 (2022-05-02)
 
 ### Fix
