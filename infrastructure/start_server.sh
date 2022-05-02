@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
 # start-server.sh
-cd /opt/app/church_cms
+cd /opt/app
+
+. venv/bin/activate
+
+cd church_cms
 
 if [ "$APP_ENV" != "prod" ]; then
   python manage.py migrate
@@ -15,5 +19,4 @@ fi
 
 python manage.py collectstatic --no-input --clear
 
-source /opt/app/venv/bin/activate
 gunicorn church_cms.wsgi --bind 0.0.0.0:8000 --workers 3

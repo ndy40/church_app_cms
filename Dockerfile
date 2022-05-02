@@ -15,11 +15,14 @@ COPY infrastructure/start_server.sh requirements* /opt/app/
 COPY church_cms/ /opt/app/church_cms/
 
 RUN python -m venv venv; \
-    source venv/bin/activate; \
+    . venv/bin/activate; \
     python -m pip install -r requirements_dev.txt
 
 WORKDIR /opt/app/church_cms
-
-
 EXPOSE 8000
 CMD ["/opt/app/start_server.sh"]
+
+
+FROM nginx:1.21.6-alpine as webserver
+RUN rm /etc/nginx/conf.d/default.conf
+COPY infrastructure/nginx/app.conf /etc/nginx/conf.d/default.conf
