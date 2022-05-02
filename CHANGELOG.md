@@ -1,3 +1,9 @@
+## v0.4.2 (2022-05-02)
+
+### Fix
+
+- **test**: fixing tests for graphql path
+
 ## v0.4.1 (2022-05-02)
 
 ### Fix
