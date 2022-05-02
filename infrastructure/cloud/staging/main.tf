@@ -6,8 +6,13 @@ resource "digitalocean_droplet" "church-cms" {
   size   = "s-1vcpu-1gb"
   tags = ["staging", "testing", "terraform"]
 
+  lifecycle {
+    ignore_changes = ["image"]
+  }
+
   ssh_keys = [
-    data.digitalocean_ssh_key.terraform.id
+    "34381106"
+    #    data.digitalocean_ssh_key.terraform.id
   ]
 
   connection {
