@@ -1,3 +1,9 @@
+## v0.4.3 (2022-05-02)
+
+### Fix
+
+- **build**: fixing build to include nginx build step
+
 ## v0.4.2 (2022-05-02)
 
 ### Fix
