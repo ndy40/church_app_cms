@@ -7,12 +7,11 @@ resource "digitalocean_droplet" "church-cms" {
   tags = ["staging", "testing", "terraform"]
 
   lifecycle {
-    ignore_changes = ["image"]
+    ignore_changes = [image]
   }
 
   ssh_keys = [
-    "34381106"
-    #    data.digitalocean_ssh_key.terraform.id
+    data.digitalocean_ssh_key.terraform.id
   ]
 
   connection {
