@@ -25,9 +25,9 @@ jobs:
             type=semver,pattern={{version}}
           github-token: ${{ secrets.GHCR_TOKEN }}
       - name: Github CR Login
+        uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          uses: docker/login-action@v1
           username: ${{ github.actor }}
           password: ${{ secrets.GHCR_TOKEN }}
       - name: Build and push - Web
