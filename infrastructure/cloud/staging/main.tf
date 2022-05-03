@@ -35,4 +35,10 @@ resource "digitalocean_droplet" "church-cms" {
     source = "../ansible-playbook"
     destination = "/opt"
   }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sleep 120; ansible-playbook /opt/ansible-playbook/playbook.yml"
+    ]
+  }
 }
