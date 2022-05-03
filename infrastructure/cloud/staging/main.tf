@@ -37,6 +37,14 @@ resource "digitalocean_droplet" "church-cms" {
   }
 
   provisioner "remote-exec" {
+    connection {
+      host = self.ipv4_address
+      user = "root"
+      type = "ssh"
+      private_key = var.pvt_key
+      timeout = "2m"
+    }
+
     inline = [
       "sleep 120; ansible-playbook /opt/ansible-playbook/playbook.yml"
     ]
