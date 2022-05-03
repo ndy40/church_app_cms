@@ -1,0 +1,8 @@
+- hosts: all
+  become: yes
+  vars_files:
+    - vars/docker.yml
+  roles:
+    - geerlingguy.docker
+#    - role: geerlingguy.postgresql
+#      become: yes
