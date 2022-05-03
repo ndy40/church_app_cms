@@ -46,7 +46,7 @@ resource "digitalocean_droplet" "church-cms" {
     }
 
     inline = [
-      "sleep 120; ansible-playbook /opt/ansible-playbook/playbook.yml"
+      "ansible-playbook -i requirements.yml /opt/ansible-playbook/playbook.yml"
     ]
   }
 }
