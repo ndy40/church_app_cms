@@ -47,7 +47,7 @@ resource "digitalocean_droplet" "church-cms" {
     }
 
     inline = [
-      "ansible-playbook -i requirements.yml /opt/ansible-playbook/playbook.yml"
+      "ansible-playbook /opt/ansible-playbook/playbook.yml"
     ]
   }
 }
