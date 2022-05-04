@@ -25,9 +25,10 @@ resource "digitalocean_droplet" "church-cms" {
   provisioner "remote-exec" {
     inline = [
       "export PATH=$PATH:/usr/bin",
-      "sudo apt-get update",
       "sudo add-apt-repository --yes --update ppa:ansible/ansible",
-      "sudo apt -y install software-properties-common ansible"
+      "sudo apt-get update",
+      "sudo apt -y install software-properties-common",
+      "sudo apt -y install  ansible"
     ]
   }
 
