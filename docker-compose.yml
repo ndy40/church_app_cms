@@ -9,7 +9,7 @@ services:
     ports:
       - "8000"
     volumes:
-      - ./church_cms:/opt/app/church_cms
+      - ./church_cms:/opt/app/church_cms:ro
       - static_volume:/opt/app/static
     environment:
       DEBUG: "true"
