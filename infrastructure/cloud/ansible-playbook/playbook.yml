@@ -4,4 +4,4 @@
   vars_files:
     - vars/docker.yml
   roles:
-    - geerlingguy.docker
+    - role: roles/geerlingguy.docker
