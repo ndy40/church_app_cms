@@ -26,9 +26,8 @@ resource "digitalocean_droplet" "church-cms" {
     inline = [
       "export PATH=$PATH:/usr/bin",
       "sudo apt update",
-      "sudo apt -y install software-properties-common",
-      "sudo add-apt-repository --yes --update ppa:ansible/ansible",
-      "sudo apt -y install ansible=5.7.1 -V"
+      "sudo apt -y install software-properties-common python3.10",
+      "python -m pip install ansible"
     ]
   }
 
