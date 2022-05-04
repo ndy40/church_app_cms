@@ -29,7 +29,7 @@ resource "digitalocean_droplet" "church-cms" {
       "sudo apt -y install software-properties-common",
       "sudo add-apt-repository --yes --update ppa:ansible/ansible",
       "sudo apt -y update",
-      "sudo apt -y install ansible"
+      "sudo apt -y install ansible=5.2.0-1ppa~hirsute"
     ]
   }
 
