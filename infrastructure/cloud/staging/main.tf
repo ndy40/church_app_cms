@@ -1,4 +1,10 @@
 
+resource "random_string" "db_password" {
+  length = 16
+  min_special = 3
+  min_upper = 3
+}
+
 resource "digitalocean_droplet" "church-cms" {
   image  = "ubuntu-20-04-x64"
   name   = "church-cms-staging"
@@ -46,7 +52,7 @@ resource "digitalocean_droplet" "church-cms" {
     }
 
     inline = [
-      "ansible-playbook /opt/ansible-playbook/playbook.yml"
+      "ansible-playbook /opt/ansible-playbook/playbook.yml -e \"db_password=${random_string.db_password.result} \""
     ]
   }
 }

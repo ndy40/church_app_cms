@@ -1,0 +1,9 @@
+postgresql_python_library: python3-psycopg2
+
+postgresql_databases:
+  - name: church_cms_staging
+postgresql_users:
+  - name: church_cms_admin
+    password: "{{ db_password }}"
+    db: church_cms_staging
+    login_host: '%'
