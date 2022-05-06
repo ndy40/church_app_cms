@@ -52,7 +52,7 @@ resource "digitalocean_droplet" "church-cms" {
     }
 
     inline = [
-      "ansible-playbook /opt/ansible-playbook/playbook.yml -e \"db_password=${random_string.db_password.result} \""
+      "ansible-playbook /opt/ansible-playbook/playbook.yml -e \"db_password='${random_string.db_password.result}'\""
     ]
   }
 }
