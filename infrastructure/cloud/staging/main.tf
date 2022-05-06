@@ -1,8 +1,8 @@
 
 resource "random_string" "db_password" {
   length = 16
-  min_special = 3
-  min_upper = 3
+  min_upper = 5
+  override_special = "#%$"
 }
 
 resource "digitalocean_droplet" "church-cms" {
