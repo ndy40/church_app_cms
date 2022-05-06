@@ -5,3 +5,8 @@
     - vars/docker.yml
   roles:
     - role: roles/geerlingguy.docker
+
+  tasks:
+    - name: "Install postgres cli client"
+      apt:
+        - postgresql-client-common
