@@ -33,7 +33,7 @@ resource "digitalocean_droplet" "church-cms" {
       "export PATH=$PATH:/usr/bin",
       "sudo apt update",
       "sudo add-apt-repository -y ",
-      "sudo apt -y install software-properties-common",
+      "sudo apt -y install software-properties-common python3-pip",
       "python3 -m pip install -q --no-input ansible"
     ]
   }
