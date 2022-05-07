@@ -1,0 +1,6 @@
+[submodule "infrastructure/cloud/ansible-playbook/roles/geerlingguy.docker"]
+	path = infrastructure/cloud/ansible-playbook/roles/geerlingguy.docker
+	url = https://github.com/geerlingguy/ansible-role-docker.git
+[submodule "infrastructure/cloud/ansible-playbook/roles/geerlingguy.postgres"]
+	path = infrastructure/cloud/ansible-playbook/roles/geerlingguy.postgres
+	url = https://github.com/geerlingguy/ansible-role-postgresql.git

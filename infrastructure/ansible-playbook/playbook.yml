@@ -1,0 +1,16 @@
+---
+- hosts: all
+  become: yes
+  remote_user: root
+  vars_files:
+    - vars/docker.yml
+    - vars/database.yml
+  roles:
+    - geerlingguy.docker
+    - geerlingguy.postgres
+
+  pre_tasks:
+    - name: "install postgres packages"
+      apt:
+        pkg:
+          - postgresql-client-common

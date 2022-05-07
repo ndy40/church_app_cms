@@ -1,0 +1,29 @@
+ansible_python_interpreter: /usr/bin/python3
+
+postgresql_python_library: python3-psycopg2
+
+postgres_users_no_log: false
+
+postgresql_auth_method: md5
+
+postgresql_hba_entries:
+  - { type: local, database: all, user: postgres, auth_method: peer }
+  - { type: local, database: all, user: all, auth_method: peer }
+  - { type: host, database: all, user: all, address: '0.0.0.0/0', auth_method: "{{ postgresql_auth_method }}" }
+  - { type: host, database: all, user: all, address: '::0/0', auth_method: "{{ postgresql_auth_method }}" }
+
+postgresql_databases:
+  - name: church_cms_staging
+
+postgresql_users:
+  - name: church_cms_admin
+    password: "{{ db_password }}"
+    db: church_cms_staging
+    login_password: "{{ db_password }}"
+
+
+postgresql_global_config_options:
+  - option: listen_addresses
+    value: "*"
+  - option: password_encryption
+    value: md5
