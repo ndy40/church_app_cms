@@ -6,22 +6,7 @@
   roles:
     - role: roles/geerlingguy.docker
 
-  pre_tasks:
-    - name: add python 3 ppa
-      ansible.builtin.apt_repository:
-        repo: 'ppa:deadsnakes/ppa'
-
   tasks:
-    - name: "Install postgres cli client"
-      apt:
-        pkg:
-          - python3.10
-          - python3.10-dev
-          - python3-pip
-
-    - name: Set Python 3.10 as default python3
-      raw: sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.10 1
-
     - name: "install postgres packages"
       apt:
         pkg:
