@@ -5,7 +5,7 @@
     - vars/docker.yml
   roles:
     - geerlingguy.docker
-    - geerlingguy.postgresql
+    - geerlingguy.postgres
 
   tasks:
     - name: "install postgres packages"
