@@ -33,7 +33,7 @@ resource "digitalocean_droplet" "church-cms" {
       "export PATH=$PATH:/usr/bin",
       "sudo apt update",
       "sudo add-apt-repository -y ppa:ansible/ansible",
-      "sleep 120; sudo apt -y install software-properties-common ansible",
+      "sudo apt -y install software-properties-common ansible",
     ]
   }
 
