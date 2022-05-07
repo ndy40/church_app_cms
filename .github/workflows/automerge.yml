@@ -1,10 +1,5 @@
 name: automerge
 on:
-  workflow_run:
-    workflows:
-      - Tests
-    types:
-      - completed
   pull_request:
     types:
       - labeled
