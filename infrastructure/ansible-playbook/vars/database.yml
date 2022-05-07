@@ -2,8 +2,6 @@ ansible_python_interpreter: /usr/bin/python3
 
 postgresql_python_library: python3-psycopg2
 
-postgres_users_no_log: false
-
 postgresql_auth_method: md5
 
 postgresql_hba_entries:
