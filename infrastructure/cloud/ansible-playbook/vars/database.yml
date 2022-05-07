@@ -1,7 +1,5 @@
 ansible_python_interpreter: /usr/bin/python3
 
-postgres_users_no_log: false
-
 postgresql_python_library: python3-psycopg2
 
 postgresql_auth_method: md5
