@@ -11,3 +11,4 @@
       apt:
         pkg:
           - postgresql-client-common
+        lock_timeout: 180

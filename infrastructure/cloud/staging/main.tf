@@ -56,3 +56,32 @@ resource "digitalocean_droplet" "church-cms" {
     ]
   }
 }
+
+
+resource "digitalocean_firewall" "cms_firewall" {
+  name = "only-22-80-443-5432"
+
+  droplet_ids = [digitalocean_droplet.church-cms.id]
+
+  inbound_rule {
+    protocol = "tcp"
+    port_range = "22"
+  }
+
+  inbound_rule {
+    protocol = "tcp"
+    port_range = "80"
+  }
+
+  inbound_rule {
+    protocol = "tcp"
+    port_range = "443"
+  }
+
+  inbound_rule {
+    protocol = "tcp"
+    port_range = "5432"
+  }
+
+  tags = ["church_cms", "staging"]
+}
