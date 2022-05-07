@@ -1,7 +1,7 @@
 
 resource "random_string" "db_password" {
   length = 16
-  min_upper = 5
+  min_upper = 3
   override_special = "#%$"
 }
 
@@ -78,12 +78,6 @@ resource "digitalocean_firewall" "cms_firewall" {
   inbound_rule {
     protocol = "tcp"
     port_range = "443"
-    source_addresses = ["0.0.0.0/0", "::/0"]
-  }
-
-  inbound_rule {
-    protocol = "tcp"
-    port_range = "5432"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
 
