@@ -101,7 +101,4 @@ resource "digitalocean_firewall" "cms_firewall" {
     protocol = "tcp"
     port_range = "5432"
   }
-
-
-
 }
