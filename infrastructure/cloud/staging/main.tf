@@ -86,4 +86,8 @@ resource "digitalocean_firewall" "cms_firewall" {
     port_range = "5432"
     source_addresses = ["0.0.0.0/0", "::/0"]
   }
+
+  outbound_rule {
+    protocol = "tcp"
+  }
 }

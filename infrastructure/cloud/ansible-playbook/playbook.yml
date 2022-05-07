@@ -3,6 +3,7 @@
   become: yes
   vars_files:
     - vars/docker.yml
+    - vars/database.yml
   roles:
     - geerlingguy.docker
     - geerlingguy.postgres
