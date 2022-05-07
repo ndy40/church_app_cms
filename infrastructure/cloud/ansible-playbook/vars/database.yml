@@ -16,7 +16,6 @@ postgresql_databases:
 postgresql_users:
   - name: church_cms_admin
     db: church_cms_staging
-    login_host: 'localhost'
     login_password: "{{ db_password }}"
 
 
