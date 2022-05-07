@@ -12,7 +12,7 @@ on:
           - staging
       db_password:
         description: Database password
-        required: required
+        required: true
         type: string
       deploy_servers:
         description: comma separated list of ip addresses
