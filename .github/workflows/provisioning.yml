@@ -27,7 +27,7 @@ jobs:
         with:
           playbook: setup.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          inventory: ${{ github.event.inputs.deploy_servers }}
           options: |
             --extra-vars db_password=${{ github.event.inputs.db_password }}
             --verbose
+            -i ${{ github.event.inputs.deploy_servers }}
