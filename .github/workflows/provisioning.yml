@@ -30,7 +30,7 @@ jobs:
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
-          playbook: setup.yml
+          playbook: infrastructure/ansible-playbook/setup.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
           options: |
             --extra-vars db_password=${{ github.event.inputs.db_password }}
