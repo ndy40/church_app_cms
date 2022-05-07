@@ -22,6 +22,11 @@ jobs:
   server_provisioning:
     runs-on: ubuntu-20.04
     steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          fetch-depth: 0
       - name: Run playbook
         uses: dawidd6/action-ansible-playbook@v2
         with:
