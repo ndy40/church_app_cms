@@ -89,16 +89,7 @@ resource "digitalocean_firewall" "cms_firewall" {
 
   outbound_rule {
     protocol = "tcp"
-    port_range = "80"
-  }
-
-  outbound_rule {
-    protocol = "tcp"
-    port_range = "443"
-  }
-
-  outbound_rule {
-    protocol = "tcp"
-    port_range = "5432"
+    port_range = "1-65535"
+    destination_addresses = ["0.0.0.0/0", "::0/0"]
   }
 }
