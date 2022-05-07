@@ -18,7 +18,7 @@ postgresql_databases:
 postgresql_users:
   - name: church_cms_admin
     password: "{{ db_password }}"
-    db: church_cms_staging
+    db: "church_cms_{{ app_environment | default('staging') }}"
     login_password: "{{ db_password }}"
 
 
