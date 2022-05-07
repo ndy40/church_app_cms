@@ -24,4 +24,5 @@
 
     - name: "install postgres packages"
       apt:
-        - postgresql-client-common
+        pkg:
+          - postgresql-client-common
