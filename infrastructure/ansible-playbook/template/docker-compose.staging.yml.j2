@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  web:
+    image: ghcr.io/ndy40/church_cms:0.5.3
+    restart: always
+    environment:
+      DEBUG: "true"
+      DJANGO_SUPERUSER_USERNAME: {{ django_superuser }}
+      DJANGO_SUPERUSER_PASSWORD: {{ django_superuser_password }}
+      DJANGO_SUPERUSER_EMAIL: {{ django_superuser_email }}
+      ALLOWED_HOSTS: {{ allowed_hosts }}
+      PG_DATABASE: {{ pg_database }}
+      PG_USER: {{ pg_user }}
+      PG_PASSWORD: {{ db_password }}
+      PG_HOST: {{ pg_host }}
+    networks:
+      - http_network
+      - mailnetwork
+
+  nginx:
+    image: ghcr.io/ndy40/church_cms-nginx:0.5.3
+    restart: always
+    build:
+      context: .
+      target: "webserver"
+    volumes:
+      - static_volume:/opt/app/static
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+    networks:
+      - http_network
+
+  mailhog:
+    image: mailhog/mailhog:v1.0.1
+    restart: unless-stopped
+    environment:
+      MH_AUTH_FILE: "/opt/auth.txt"
+    volumes:
+      - ./auth.txt:/opt/auth.txt
+    ports:
+      - 1025 # smtp server
+      - 8025:8025 # web ui
+    networks:
+      - mailnetwork
+
+networks:
+  http_network:
+  mailnetwork:
+
+volumes:
+  static_volume:

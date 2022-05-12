@@ -14,3 +14,10 @@
       apt:
         pkg:
           - postgresql-client-common
+  tasks:
+    - name: Install docker
+      import_role:
+        name: geerlingguy.docker
+    - name: Install Postgres SQL Database
+      import_role:
+        name: geerlingguy.postgres
