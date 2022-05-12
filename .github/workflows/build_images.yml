@@ -55,3 +55,27 @@ jobs:
           target: webserver
           tags: ${{ steps.meta_nginx.outputs.tags }}
           labels: ${{ steps.meta_nginx.outputs.labels }}
+  deploy_to_staging:
+    runs-on: ubuntu-latest
+    name: deploy latest tag to staging
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          fetch-depth: 0
+      - name: Setup config
+        run: |
+          echo "${{ secrets.APP_CONFIG }}" | base64 -d > config.json
+      - name: Set Release TAG
+        run: echo "RELEASE_TAG=$(git describe --tags --abbrev=0 | sed 's/^.//')" >> $GITHUB_ENV
+      - name: Run Deploy Playbook
+        uses: dawidd6/action-ansible-playbook@v2
+        with:
+          playbook: infrastructure/ansible-playbook/deploy.yml
+          key: ${{secrets.SSH_PRIVATE_KEY}}
+          requirements: infrastructure/ansible-playbook/galaxy-requirements.yml
+          options: |
+            -i ${{ secrets.SERVERS }}
+            --extra-vars "@./config.json"
+            -e "app_version=${{ env.RELEASE_TAG }}"

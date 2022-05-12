@@ -32,6 +32,7 @@ jobs:
         with:
           playbook: infrastructure/ansible-playbook/setup.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
+          requirements: infrastructure/ansible-playbook/requirements.yml
           options: |
             --extra-vars db_password=${{ github.event.inputs.db_password }}
             --verbose
