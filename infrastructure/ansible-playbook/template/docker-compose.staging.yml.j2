@@ -4,6 +4,8 @@ services:
   web:
     image: "ghcr.io/ndy40/church_cms:{{app_version}}"
     restart: always
+    volumes:
+      - static_volume:/opt/app/static
     environment:
       DEBUG: "true"
       DJANGO_SUPERUSER_USERNAME: {{ django_superuser }}
@@ -39,7 +41,7 @@ services:
     environment:
       MH_AUTH_FILE: "/opt/auth.txt"
     volumes:
-      - ./auth.txt:/opt/auth.txt
+      - /opt/church_cms/auth.txt:/opt/auth.txt
     ports:
       - 1025 # smtp server
       - 8025:8025 # web ui

@@ -1,2 +1,2 @@
 admin:$2a$12$hrkJCpmbw4XPErRHzPjV7uypaLwWwe1Uw.J4yCDUNkjy.ADKN.Onu
-stagingadmin:$2a$12$JsqaZMl7rD4JG0kVW6eQfOarR3MketOGGBqkoHGC6e3kVLSrSwdTW
+superadmin:$2a$10$ld.02Qvbi16yClh0Nj2sQOPu1QXBZD7rcpRz5.amaTtwatZzA/wDS
