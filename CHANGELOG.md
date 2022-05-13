@@ -1,3 +1,9 @@
+## v0.8.10 (2022-05-13)
+
+### Fix
+
+- **ci**: updated copy -> template for variable template reasons.
+
 ## v0.8.9 (2022-05-13)
 
 ### Fix
