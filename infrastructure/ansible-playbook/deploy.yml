@@ -29,7 +29,7 @@
         username: "{{ docker_username }}"
         password: "{{ docker_password }}"
     - name: Copy docker compose file
-      copy:
+      ansible.builtin.template:
         src: template/docker-compose.staging.yml.j2
         dest: "/opt/church_cms/docker-compose.staging.yml"
     - name: Copy docker compose file
