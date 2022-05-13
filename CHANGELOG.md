@@ -1,3 +1,9 @@
+## v0.8.2 (2022-05-13)
+
+### Fix
+
+- **ci**: add dependencies between build and deploy
+
 ## v0.8.1 (2022-05-13)
 
 ### Fix
