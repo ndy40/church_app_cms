@@ -1,3 +1,10 @@
+## v0.8.9 (2022-05-13)
+
+### Fix
+
+- **ci**: fix .env template to use = and not :
+- **ci**: fix .env template to use = and not :
+
 ## v0.8.8 (2022-05-13)
 
 ### Fix
