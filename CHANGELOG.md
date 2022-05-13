@@ -1,3 +1,10 @@
+## v0.8.5 (2022-05-13)
+
+### Fix
+
+- **ci**: fixing issues with containers
+- **ci**: fixing issues with containers
+
 ## v0.8.4 (2022-05-13)
 
 ### Fix
