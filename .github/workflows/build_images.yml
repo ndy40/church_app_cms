@@ -74,7 +74,7 @@ jobs:
         with:
           playbook: infrastructure/ansible-playbook/deploy.yml
           key: ${{secrets.SSH_PRIVATE_KEY}}
-          requirements: infrastructure/ansible-playbook/galaxy-requirements.yml
+          requirements: infrastructure/ansible-playbook/requirements.yml
           options: |
             -i ${{ secrets.SERVERS }}
             --extra-vars "@./config.json"

@@ -1,0 +1,43 @@
+---
+- hosts: all
+  become: yes
+  remote_user: root
+  vars_files:
+    - vars/deploy.yml
+
+  pre_tasks:
+    - name: Install pip
+      apt:
+        name:
+          - python3-dev
+          - python3-pip
+    - name: make sure python sdk is installed
+      pip:
+        name:
+          - docker~=5.0.3
+          - docker-compose
+
+  tasks:
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /opt/church_cms
+        state: directory
+        mode: '0755'
+    - name: login to ghcr.io - Github Docker Registry
+      community.docker.docker_login:
+        registry_url: "{{ docker_registry_url | default('docker.io') }}"
+        username: "{{ docker_username }}"
+        password: "{{ docker_password }}"
+    - name: Copy docker compose file
+      ansible.builtin.template:
+        src: template/docker-compose.staging.yml.j2
+        dest: "/opt/church_cms/docker-compose.staging.yml"
+    - name: stop containers/services
+      community.docker.docker_compose:
+        debug: yes
+        state: present
+        project_src: "/opt/church_cms"
+        pull: yes
+        restarted: yes
+        files:
+          - "/opt/church_cms/docker-compose.staging.yml"
