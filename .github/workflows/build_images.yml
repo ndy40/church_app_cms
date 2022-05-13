@@ -58,6 +58,8 @@ jobs:
   deploy_to_staging:
     runs-on: ubuntu-latest
     name: deploy latest tag to staging
+    needs:
+      - build_publish
     steps:
       - name: Check out
         uses: actions/checkout@v2
