@@ -1,3 +1,9 @@
+## v0.8.8 (2022-05-13)
+
+### Fix
+
+- **ci**: creating .env file for compose
+
 ## v0.8.7 (2022-05-13)
 
 ### Fix
