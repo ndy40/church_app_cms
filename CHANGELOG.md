@@ -1,3 +1,10 @@
+## v0.8.6 (2022-05-13)
+
+### Fix
+
+- **ci**: dynamically fetching DO servers for ansible
+- **ci**: dynamically fetching DO servers for ansible
+
 ## v0.8.5 (2022-05-13)
 
 ### Fix
