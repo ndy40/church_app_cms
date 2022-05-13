@@ -1,6 +1,6 @@
 roles:
   - geerlingguy.docker
-  - geerlingguy.postgres
+  - geerlingguy.postgresql
 
 collections:
   - community.docker
