@@ -1,3 +1,10 @@
+## v0.8.4 (2022-05-13)
+
+### Fix
+
+- **ci**: version update
+- **ci**: version update
+
 ## v0.8.3 (2022-05-13)
 
 ### Fix
