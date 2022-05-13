@@ -1,3 +1,9 @@
+## v0.7.0 (2022-05-13)
+
+### Feat
+
+- **deploy**: Add CI deploy step after tagging
+
 ## v0.6.0 (2022-05-12)
 
 ### Feat
