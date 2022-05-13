@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   web:
-    image: ghcr.io/ndy40/church_cms:0.5.3
+    image: ghcr.io/ndy40/church_cms:"{{app_version}}"
     restart: always
     environment:
       DEBUG: "true"
@@ -19,7 +19,7 @@ services:
       - mailnetwork
 
   nginx:
-    image: ghcr.io/ndy40/church_cms-nginx:0.5.3
+    image: ghcr.io/ndy40/church_cms-nginx:"{{app_version}}"
     restart: always
     build:
       context: .
