@@ -69,6 +69,15 @@ jobs:
       - name: Setup config
         run: |
           echo "${{ secrets.APP_CONFIG }}" | base64 -d > config.json
+      - name: Install doctl
+        run: |
+          wget https://github.com/digitalocean/doctl/releases/download/v1.75.0/doctl-1.75.0-linux-amd64.tar.gz
+          tar xf doctl-1.75.0-linux-amd64.tar.gz
+          sudo mv ./doctl /usr/local/bin
+          doctl -t ${{ secrets.DO_TOKEN }} auth init
+          doctl compute droplet list --format PublicIPv4 --no-header --tag-name church_cms --tag-name staging > .hosts
+      - name: Get DO Servers
+        run:  echo "SERVERS=$()
       - name: Set Release TAG
         run: echo "RELEASE_TAG=$(git describe --tags --abbrev=0 | sed 's/^.//')" >> $GITHUB_ENV
       - name: Run Deploy Playbook
@@ -78,6 +87,6 @@ jobs:
           key: ${{secrets.SSH_PRIVATE_KEY}}
           requirements: infrastructure/ansible-playbook/requirements.yml
           options: |
-            -i ${{ secrets.SERVERS }}
+            -i .hosts
             --extra-vars "@./config.json"
             -e "app_version=${{ env.RELEASE_TAG }}"
