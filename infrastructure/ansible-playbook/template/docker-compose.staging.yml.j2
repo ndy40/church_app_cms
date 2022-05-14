@@ -20,6 +20,7 @@ services:
       target: "webserver"
     volumes:
       - static_volume:/opt/app/static
+      - /etc/letsencrypt:/etc/letsencrypt
     ports:
       - "80:80"
     depends_on:
