@@ -26,3 +26,8 @@ CMD ["/opt/app/start_server.sh"]
 FROM nginx:1.21.6-alpine as webserver
 RUN rm /etc/nginx/conf.d/default.conf
 COPY infrastructure/nginx/app.conf /etc/nginx/conf.d/default.conf
+
+
+FROM nginx:1.21.6-alpine as webserver-staging
+RUN rm /etc/nginx/conf.d/default.conf
+COPY infrastructure/nginx/app.staging.conf /etc/nginx/conf.d/default.conf
