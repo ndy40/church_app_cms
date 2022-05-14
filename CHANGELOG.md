@@ -1,3 +1,9 @@
+## v0.9.0 (2022-05-14)
+
+### Feat
+
+- **ci**: adding ssl certificate for nginx
+
 ## v0.8.10 (2022-05-13)
 
 ### Fix
