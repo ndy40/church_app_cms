@@ -28,6 +28,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,').split(',')
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://cms.ndifreke-ekott.com',
+    'https://localhost',
+    'http://localhost',
+    'http://127.0.0.1'
+]
 
 # Application definition
 

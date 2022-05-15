@@ -31,7 +31,7 @@
     - name: Copy docker compose file
       ansible.builtin.template:
         src: template/docker-compose.staging.yml.j2
-        dest: "/opt/church_cms/docker-compose.staging.yml"
+        dest: "/opt/church_cms/docker-compose.yml"
     - name: Copy docker compose file
       ansible.builtin.template:
         src: template/env.staging.j2
@@ -44,4 +44,4 @@
         pull: yes
         restarted: yes
         files:
-          - "/opt/church_cms/docker-compose.staging.yml"
+          - "/opt/church_cms/docker-compose.yml"
