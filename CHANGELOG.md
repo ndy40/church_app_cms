@@ -1,3 +1,10 @@
+## v0.9.3 (2022-05-15)
+
+### Fix
+
+- **ci**: allowed csrf
+- **ci**: allowed csrf
+
 ## v0.9.2 (2022-05-14)
 
 ### Fix
