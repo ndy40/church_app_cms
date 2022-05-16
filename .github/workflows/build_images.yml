@@ -24,6 +24,31 @@ jobs:
           tags: |
             type=semver,pattern={{version}}
           github-token: ${{ secrets.GHCR_TOKEN }}
+      - name: Github CR Login
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ secrets.GHCR_USERNAME }}
+          password: ${{ secrets.GHCR_TOKEN }}
+      - name: Build and push - Web
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          push: true
+          target: devstage
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+  build_nginx_image:
+    runs-on: ubuntu-latest
+    name: Build and Publish Nginx Image
+    needs:
+      - build_publish
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+        with:
+          token: "${{ secrets.PERSONAL_ACCESS_TOKEN }}"
+          fetch-depth: 0
       - name: Docker meta nginx
         id: meta_nginx
         uses: docker/metadata-action@v3
@@ -39,14 +64,6 @@ jobs:
           registry: ghcr.io
           username: ${{ secrets.GHCR_USERNAME }}
           password: ${{ secrets.GHCR_TOKEN }}
-      - name: Build and push - Web
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          push: true
-          target: devstage
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
       - name: Build and push - Nginx
         uses: docker/build-push-action@v2
         with:
@@ -55,6 +72,7 @@ jobs:
           target: webserver-staging
           tags: ${{ steps.meta_nginx.outputs.tags }}
           labels: ${{ steps.meta_nginx.outputs.labels }}
+
   deploy_to_staging:
     runs-on: ubuntu-latest
     name: deploy latest tag to staging

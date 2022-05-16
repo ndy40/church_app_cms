@@ -13,7 +13,7 @@ services:
       - mailnetwork
 
   nginx:
-    image: "ghcr.io/ndy40/church_cms-nginx:{{app_version}}"
+    image: ghcr.io/ndy40/church_cms-nginx:latest
     restart: always
     build:
       context: .
@@ -33,7 +33,7 @@ services:
     image: mailhog/mailhog:v1.0.1
     restart: unless-stopped
     environment:
-      MH_AUTH_FILE: "/opt/auth.txt"
+      MH_AUTH_FILE: "/opt/church_cms/auth.txt"
     volumes:
       - /opt/church_cms/auth.txt:/opt/auth.txt
     ports:

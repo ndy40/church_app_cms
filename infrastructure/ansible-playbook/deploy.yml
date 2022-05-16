@@ -36,6 +36,10 @@
       ansible.builtin.template:
         src: template/env.staging.j2
         dest: "/opt/church_cms/.env"
+    - name: Copy Auth.txt for mailhog
+      copy:
+        src: "{{ playbook_dir }}/../../auth.txt"
+        dest: "/opt/church_cms/auth.txt"
     - name: stop containers/services
       community.docker.docker_compose:
         debug: yes
