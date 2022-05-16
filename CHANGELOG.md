@@ -1,3 +1,9 @@
+## v0.9.4 (2022-05-16)
+
+### Fix
+
+- **ci**: updating pipeline to ignore nginx version update.
+
 ## v0.9.3 (2022-05-15)
 
 ### Fix
