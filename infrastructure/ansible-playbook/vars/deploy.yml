@@ -1,1 +1,1 @@
-allowed_hosts: "{{ inventory_hostname }}"
+allowed_hosts: "{{ inventory_hostname }},cms.ndifreke-ekott.com"
