@@ -1,3 +1,10 @@
+## v0.9.11 (2022-05-17)
+
+### Fix
+
+- **ci**: fixing allowed hosts
+- **ci**: fixing allowed hosts
+
 ## v0.9.10 (2022-05-17)
 
 ### Fix
