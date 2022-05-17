@@ -44,7 +44,8 @@
       community.docker.docker_compose:
         state: absent
         remove_orphans: yes
-        remove_images: yes
+        remove_images: all
+        remove_volumes: yes
         project_src: "/opt/church_cms"
         files:
           - "/opt/church_cms/docker-compose.yml"
