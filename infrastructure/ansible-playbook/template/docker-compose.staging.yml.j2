@@ -6,8 +6,6 @@ services:
     restart: always
     volumes:
       - static_volume:/opt/app/static
-    env_file:
-      - .env
     networks:
       - http_network
       - mailnetwork
