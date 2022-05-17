@@ -1,3 +1,10 @@
+## v0.9.7 (2022-05-17)
+
+### Fix
+
+- **ci**: fixing auth.txt and nginx build context
+- **ci**: fixing auth.txt and nginx build context
+
 ## v0.9.6 (2022-05-17)
 
 ### Fix
