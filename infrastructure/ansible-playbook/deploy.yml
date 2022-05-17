@@ -40,12 +40,16 @@
       copy:
         src: "{{ playbook_dir }}/../../auth.txt"
         dest: "/opt/church_cms/auth.txt"
-    - name: stop containers/services
+    - name: Stop service
       community.docker.docker_compose:
-        debug: yes
+        state: absent
+        project_src: "/opt/church_cms"
+        files:
+          - "/opt/church_cms/docker-compose.yml"
+    - name: Restart Services
+      community.docker.docker_compose:
         state: present
         project_src: "/opt/church_cms"
         pull: yes
-        restarted: yes
         files:
           - "/opt/church_cms/docker-compose.yml"
