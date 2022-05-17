@@ -56,7 +56,7 @@ jobs:
           files: |
             infrastructure/nginx/*.conf
       - name: Docker meta nginx
-        if: ${{ steps.verify-changed-files.outputs.files_changed == "true" }}
+        if: steps.verify-changed-files.outputs.files_changed == 'true'
         id: meta_nginx
         uses: docker/metadata-action@v3
         with:
