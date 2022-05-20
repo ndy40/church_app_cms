@@ -4,6 +4,8 @@ services:
   web:
     image: "ghcr.io/ndy40/church_cms:{{app_version}}"
     restart: always
+    env_file:
+      - .env.staging
     volumes:
       - static_volume:/opt/app/static
     networks:

@@ -35,7 +35,7 @@
     - name: Copy docker compose file
       ansible.builtin.template:
         src: template/env.staging.j2
-        dest: "/opt/church_cms/.env"
+        dest: "/opt/church_cms/.env.staging"
     - name: Copy Auth.txt for mailhog
       copy:
         src: "{{ playbook_dir }}/../../auth.txt"
