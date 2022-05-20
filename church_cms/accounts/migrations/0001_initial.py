@@ -36,7 +36,7 @@ class Migration(migrations.Migration):
                 ('push_broadcast', models.BooleanField(default=True)),
                 ('app_notification', models.BooleanField(default=True)),
                 ('email', models.BooleanField(default=True)),
-                ('device', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='accounts.device')),
+                ('accounts', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, serialize=False, to='accounts.accounts')),
             ],
         ),
         migrations.CreateModel(

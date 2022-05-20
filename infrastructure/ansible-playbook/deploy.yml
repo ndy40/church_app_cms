@@ -49,8 +49,14 @@
         project_src: "/opt/church_cms"
         files:
           - "/opt/church_cms/docker-compose.yml"
+      register: output
+
+    - ansible.builtin.debug:
+        var: output
+
     - name: Restart Services
       community.docker.docker_compose:
+        debug: yes
         project_src: "/opt/church_cms"
       register: output
 

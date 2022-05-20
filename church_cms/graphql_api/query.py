@@ -1,5 +1,7 @@
 import graphene
 
+from .accounts.query import DeviceQuery
 
-class Query(graphene.ObjectType):
-    hello = graphene.String(default_value='hi')
+
+class Query(graphene.ObjectType, DeviceQuery):
+    pass
