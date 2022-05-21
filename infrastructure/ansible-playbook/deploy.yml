@@ -63,6 +63,8 @@
       community.docker.docker_compose:
         debug: yes
         project_src: "/opt/church_cms"
+        pull: yes
+        recreate: always
       register: output
 
     - ansible.builtin.debug:
