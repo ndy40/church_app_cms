@@ -101,7 +101,6 @@ jobs:
           sudo mv ./doctl /usr/local/bin
           doctl -t ${{ secrets.DO_TOKEN }} auth init
           doctl compute droplet list --format PublicIPv4 --no-header --tag-name church_cms --tag-name staging > .hosts
-          echo "cms.ndifreke-ekott.com" >> .hosts
       - name: Set Release TAG
         run: echo "RELEASE_TAG=$(git describe --tags --abbrev=0 | sed 's/^.//')" >> $GITHUB_ENV
       - name: Run Deploy Playbook
