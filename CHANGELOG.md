@@ -1,3 +1,9 @@
+## v0.10.2 (2022-05-21)
+
+### Fix
+
+- **ci**: cleaning up services before
+
 ## v0.10.1 (2022-05-21)
 
 ### Fix
