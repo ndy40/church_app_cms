@@ -3,6 +3,7 @@ version: "3.8"
 services:
   web:
     image: "ghcr.io/ndy40/church_cms:{{app_version}}"
+    container_name: "church_cms"
     restart: always
     env_file:
       - .env.staging
@@ -14,6 +15,7 @@ services:
 
   nginx:
     image: ghcr.io/ndy40/church_cms-nginx:latest
+    container_name: webserver
     restart: always
     volumes:
       - static_volume:/opt/app/static
