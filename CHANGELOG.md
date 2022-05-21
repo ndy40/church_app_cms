@@ -1,3 +1,13 @@
+## v0.10.0 (2022-05-21)
+
+### Fix
+
+- **graphql**: fixing tests and replaced migrations
+
+### Feat
+
+- **graphql**: adding device graphql models
+
 ## v0.9.13 (2022-05-20)
 
 ### Fix
