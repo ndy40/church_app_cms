@@ -13,7 +13,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='deviceconsent',
-            name='accounts',
-            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='consent', serialize=False, to='accounts.accounts'),
+            name='device',
+            field=models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, primary_key=True, related_name='consent', serialize=False, to='accounts.device'),
         ),
     ]

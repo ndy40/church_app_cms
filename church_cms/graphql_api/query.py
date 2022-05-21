@@ -4,4 +4,4 @@ from .accounts.query import DeviceQuery
 
 
 class Query(graphene.ObjectType, DeviceQuery):
-    pass
+    hello = graphene.String(default_value='hi')
