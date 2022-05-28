@@ -14,11 +14,11 @@ class Device(models.Model):
     os_version = models.CharField(max_length=50)
     manufacturer = models.CharField(max_length=255)
     model = models.CharField(max_length=100)
-    resolution = models.CharField(max_length=50)
-    screen_height = models.CharField(max_length=50)
-    screen_width = models.CharField(max_length=50)
+    resolution = models.CharField(max_length=50, null=True, blank=True)
+    screen_height = models.CharField(max_length=50, null=True, blank=True)
+    screen_width = models.CharField(max_length=50, null=True, blank=True)
     app_version = models.CharField(max_length=100)
-    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
 
 class DeviceConsent(models.Model):

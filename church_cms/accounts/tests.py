@@ -1,7 +1,8 @@
 from django.test import TestCase
-from django.db.models import QuerySet
+
 
 from .models import Device, DeviceConsent, User
+from .services import register_device, update_device_consent
 
 # Create your tests here.
 
@@ -57,3 +58,42 @@ class DeviceAndUserTestCase(TestCase):
 
         for device in user.device_set.all():
             assert isinstance(device, Device)
+
+    def test_register_device(self):
+        payload = {
+            'token': 'token123',
+            'os_version': 'iOS 15.1',
+            'manufacturer': 'Apple',
+            'model': 'iPone 11',
+            'app_version': 'v1.0.3',
+            'consent': {
+                'push_broadcast': True,
+                'app_notification': True,
+                'email': False,
+            }
+        }
+
+        new_device = register_device(payload)
+        assert new_device.id is not None
+        assert isinstance(new_device.consent, DeviceConsent)
+
+    def test_update_device_consent(self):
+        payload = {
+            'token': 'token123',
+            'os_version': 'iOS 15.1',
+            'manufacturer': 'Apple',
+            'model': 'iPone 11',
+            'app_version': 'v1.0.3',
+            'consent': {
+                'push_broadcast': True,
+                'app_notification': True,
+                'email': False,
+            }
+        }
+
+        new_device = register_device(payload)
+        device = update_device_consent(new_device.id, {'push_broadcast': False})
+
+        assert device.consent.push_broadcast is False
+        assert device.consent.app_notification is True
+        assert device.consent.email is False
