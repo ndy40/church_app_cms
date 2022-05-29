@@ -1,7 +1,7 @@
 import graphene
 
-from .accounts.mutation import RegisterDeviceMutation
+from .accounts.mutation import DeviceMutationsMixin
 
 
-class Mutation(graphene.ObjectType, RegisterDeviceMutation):
+class Mutation(graphene.ObjectType, DeviceMutationsMixin):
     pass

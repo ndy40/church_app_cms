@@ -15,15 +15,22 @@ class DeviceType(DjangoObjectType):
 class DeviceConsentType(DjangoObjectType):
     class Meta:
         model = DeviceConsent
-        fields = '__all__'
+        exclude = ('device',)
+
+
+class DeviceConsentInput(InputObjectType):
+    email = graphene.Boolean()
+    push_broadcast = graphene.Boolean()
+    app_notification = graphene.Boolean()
 
 
 class DeviceInput(InputObjectType):
-    manufacturer = graphene.Field(graphene.String, required=True)
-    os_version = graphene.Field(graphene.String, required=True)
-    model = graphene.Field(graphene.String, required=True)
-    token = graphene.Field(graphene.String, required=True)
-    consent = graphene.Field(DeviceConsent)
+    manufacturer = graphene.String(required=True)
+    os_version = graphene.String(required=True)
+    model = graphene.String(required=True)
+    token = graphene.String(required=True)
+    app_version = graphene.String(required=True)
+    consent = graphene.InputField(DeviceConsentInput)
 
 
 class DeviceUpdate(InputObjectType):
