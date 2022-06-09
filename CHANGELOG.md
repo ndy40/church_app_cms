@@ -1,3 +1,9 @@
+## v0.12.0 (2022-06-09)
+
+### Feat
+
+- **device**: Device registration and auth per request
+
 ## v0.11.0 (2022-05-29)
 
 ### Feat
