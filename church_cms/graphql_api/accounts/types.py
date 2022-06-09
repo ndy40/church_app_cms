@@ -28,7 +28,6 @@ class DeviceInput(InputObjectType):
     manufacturer = graphene.String(required=True)
     os_version = graphene.String(required=True)
     model = graphene.String(required=True)
-    token = graphene.String(required=True)
     app_version = graphene.String(required=True)
     consent = graphene.InputField(DeviceConsentInput)
 

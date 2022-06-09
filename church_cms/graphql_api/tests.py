@@ -23,9 +23,9 @@ class GraphQlApiTestCase(TestCase):
         payload = """
             mutation registerDevice($input: DeviceInput!) {
               registerDevice(input: $input) {
-                device {
+                __typename
+                ... on DeviceType {
                   id
-                  token
                   osVersion
                   manufacturer
                   model
@@ -45,7 +45,6 @@ class GraphQlApiTestCase(TestCase):
                     "manufacturer": "Apple",
                     "osVersion": "15.01",
                     "model": "iPhone 11",
-                    "token": "token123",
                     "appVersion": "v0.1.0",
                     "consent": {
                         "email": true,
@@ -59,9 +58,8 @@ class GraphQlApiTestCase(TestCase):
         expected_response = {
             'data': {
                 'registerDevice': {
-                    'device': {
+                        '__typename': 'DeviceType',
                         'id': '1',
-                        'token': 'token123',
                         'osVersion': '15.01',
                         'manufacturer': 'Apple',
                         'model': 'iPhone 11',
@@ -73,7 +71,6 @@ class GraphQlApiTestCase(TestCase):
                     }
                 }
             }
-        }
 
         resp = self.factory.post('/', data={'query': payload, 'variables': variables})
         assert resp.status_code == 200
@@ -83,17 +80,18 @@ class GraphQlApiTestCase(TestCase):
         payload = """
             mutation registerDevice($input: DeviceInput!) {
               registerDevice(input: $input) {
-                device {
-                  id
-                  token
-                  osVersion
-                  manufacturer
-                  model
-                  consent {
-                    pushBroadcast
-                    appNotification
-                    email
-                  }
+                __typename
+                ... on DeviceType {
+                      id
+                      token
+                      osVersion
+                      manufacturer
+                      model
+                      consent {
+                        pushBroadcast
+                        appNotification
+                        email
+                      }
                 }
               }
             }
@@ -105,7 +103,6 @@ class GraphQlApiTestCase(TestCase):
                     "manufacturer": "Apple",
                     "osVersion": "15.01",
                     "model": "iPhone 11",
-                    "token": "token123",
                     "appVersion": "v0.1.0",
                     "consent": {
                         "email": true,
@@ -117,12 +114,14 @@ class GraphQlApiTestCase(TestCase):
         """
 
         resp = self.factory.post('/', data={'query': payload, 'variables': variables})
-        device_id = resp.json()['data']['registerDevice']['device']['id']
+        device_id = resp.json()['data']['registerDevice']['id']
+        token = resp.json()['data']['registerDevice']['token']
 
         update_payload = """
             mutation updateDeviceConsent($id: ID!, $input: DeviceConsentInput!) {
                 updateDeviceConsent(id: $id, input: $input) {
-                    device {
+                    __typename
+                    ... on DeviceType {
                         id
                         consent {
                             email
@@ -136,7 +135,7 @@ class GraphQlApiTestCase(TestCase):
 
         variables = """
             {
-                "id": %s,
+                "id": "%s",
                 "input": {
                     "email": true,
                     "pushBroadcast": false,
@@ -148,18 +147,48 @@ class GraphQlApiTestCase(TestCase):
         expected_response = {
             'data': {
                 'updateDeviceConsent': {
-                    'device': {
-                        'id': f'{device_id}',
-                        'consent': {
-                            'email': True,
-                            'pushBroadcast': False,
-                            'appNotification': True
-                        }
+                    '__typename': 'DeviceType',
+                    'id': f'{device_id}',
+                    'consent': {
+                        'email': True,
+                        'pushBroadcast': False,
+                        'appNotification': True
                     }
                 }
             }
         }
 
-        resp = self.factory.post('/', data={'query': update_payload, 'variables': variables})
-        print(resp.json())
+        resp = self.factory.post('/', data={'query': update_payload, 'variables': variables},
+                                 HTTP_X_DEVICE_ID=token)
         assert expected_response == resp.json()
+
+    def test_that_device_header_is_required(self):
+        update_payload = """
+            mutation updateDeviceConsent($id: ID!, $input: DeviceConsentInput!) {
+                updateDeviceConsent(id: $id, input: $input) {
+                    __typename
+                    ... on DeviceType {
+                        id
+                        consent {
+                            email
+                            pushBroadcast
+                            appNotification
+                        }
+                    }
+                }
+            }
+        """
+
+        variables = """
+            {
+                "id": "1",
+                "input": {
+                    "email": true,
+                    "pushBroadcast": false,
+                    "appNotification": true
+                }
+            }
+        """
+
+        resp = self.factory.post('/', data={'query': update_payload, 'variables': variables})
+        assert 'errors' in resp.json()

@@ -1,12 +1,19 @@
-from django.forms import inlineformset_factory
+import hashlib
+
 from django.dispatch import receiver
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 
 from .models import Device, DeviceConsent
-from .forms import DeviceForm, DeviceConsentForm
+from .forms import DeviceForm
 
 
 def register_device(attributes: dict) -> Device:
+
+    if 'token' not in attributes:
+        str_template = f'{attributes["model"]}:{attributes["app_version"]}:{attributes["os_version"]}:' \
+                       f'{attributes["manufacturer"]}'
+        attributes['token'] = hashlib.sha256(str_template.encode('utf-8')).hexdigest()
+
     device_form = DeviceForm(attributes)
 
     if device_form.is_valid():
@@ -38,9 +45,3 @@ def update_device_consent(device_id: int, consent: dict):
 
         model.save()
         return model
-
-
-def authenticate_device(token: str):
-    """ query device table for token, first validate the token is valid.
-    If found generated jwt token"""
-    ...
