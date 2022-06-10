@@ -2,12 +2,21 @@ import graphene
 
 from accounts.models import Device
 
-from .types import DeviceType
+from ..constants import DEVICE_HEADER_KEY
+from ..decorators import device_header_required
+from .types import MeContextType
 
 
-class DeviceQuery:
-    devices = graphene.List(DeviceType)
+class MeContext:
+    me = graphene.Field(MeContextType)
 
-    @staticmethod
-    def resolve_devices(root, info, **kwargs):
-        return Device.objects.all()
+    @classmethod
+    @device_header_required
+    def resolve_me(cls, root, info):
+        payload = dict()
+
+        if DEVICE_HEADER_KEY in info.context.META:
+            device = Device.objects.get(token=info.context.META.get(DEVICE_HEADER_KEY))
+            payload['device'] = device
+
+        return MeContextType(**payload)

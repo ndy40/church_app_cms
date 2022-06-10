@@ -3,6 +3,8 @@ from graphene import InputObjectType
 from graphene_django import DjangoObjectType
 
 from accounts.models import Device, DeviceConsent, User
+from ..constants import DEVICE_HEADER_KEY
+from ..decorators import device_header_required
 
 
 class DeviceType(DjangoObjectType):
@@ -44,3 +46,7 @@ class UserType(DjangoObjectType):
     class Meta:
         model = User
         fields = ('id', 'email', 'birthday', 'is_member', 'first_name', 'last_name', 'date_joined', 'last_login')
+
+
+class MeContextType(graphene.ObjectType):
+    device = graphene.Field(DeviceType)
